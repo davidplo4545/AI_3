@@ -1,0 +1,96 @@
+-------------------------------------------
+------------------ TESTS ------------------
+-------------------------------------------
+################################## test_initiation
+################################## test_entropy
+label_arr = ['B' 'M' 'M' 'M' 'M' 'B' 'B' 'B' 'B' 'B']
+counts = {'M': 4, 'B': 6}
+Entropy = 0.9709505944546686
+################################## test_information_gain_1
+Full counts = {'M': 4, 'B': 2} therefore, Full entropy: 0.9182958340544896
+Left counts = {'M': 2, 'B': 1} therefore, Left entropy: 0.9182958340544896
+Right counts = {'M': 2, 'B': 1} therefore, Right entropy: 0.9182958340544896
+Info Gain = 0.0
+################################## test_information_gain_2
+Full counts = {'M': 4, 'B': 2} therefore, Full entropy: 0.9182958340544896
+Left counts = {'M': 3, 'B': 1} therefore, Left entropy: 0.8112781244591328
+Right counts = {'M': 1, 'B': 1} therefore, Right entropy: 1.0
+Info Gain = 0.04411041774840102
+################################## test_partition
+Question: smoothness_mean is >=  
+ 0.10
+Gain: 0.9798687566511528, amount true 5, amount false 7
+True include {'M': 5}
+False include {'B': 7}
+################################## find_best_split
+Testing on: 
+[[ 11.89   21.17   76.39 ]
+ [ 13.73   22.61   93.6  ]
+ [ 15.22   30.62  103.4  ]
+ [ 12.45   15.7    82.57 ]
+ [ 22.01   21.9   147.2  ]
+ [ 12.3    15.9    78.83 ]
+ [ 13.74   17.91   88.12 ]
+ [  9.667  18.49   61.49 ]
+ [ 12.49   16.85   79.19 ]
+ [ 13.64   16.34   87.21 ]] 
+Labels are: 
+['B' 'M' 'M' 'M' 'M' 'B' 'B' 'B' 'B' 'B']
+Best gain 0.5567796494470394
+Best question feature_2 >=  
+ 90.86 (<-depends on what you named it)
+True include {'M': 3}
+False include {'M': 1, 'B': 6}
+################################## test_build_tree
+Testing on: 
+[[ 11.89   21.17   76.39 ]
+ [ 13.73   22.61   93.6  ]
+ [ 15.22   30.62  103.4  ]
+ [ 12.45   15.7    82.57 ]
+ [ 22.01   21.9   147.2  ]
+ [ 12.3    15.9    78.83 ]
+ [ 13.74   17.91   88.12 ]
+ [  9.667  18.49   61.49 ]
+ [ 12.49   16.85   79.19 ]
+ [ 13.64   16.34   87.21 ]] 
+Labels are: 
+['B' 'M' 'M' 'M' 'M' 'B' 'B' 'B' 'B' 'B']
+root: feature_2 split 90.86
+root->true: is Leaf True of {'M': 3}
+root->false: feature_1 split 15.8
+root->false->true: is Leaf True of {'B': 6}
+root->false->false: is Leaf True of {'M': 1}
+################################## test_fit
+[takes around 20sec...]
+root: feature_22 split 110.25
+root->true: feature_6 split 0.06972
+root->true->true: is Leaf True of {'M': 94}
+root->true->false: feature_16 split 0.01814
+root->true->false->true: is Leaf True of {'B': 6}
+root->true->false->false: is Leaf True of {'M': 8}
+root->false: feature_26 split 0.4023
+root->false->true: feature_24 split 0.1651
+root->false->true->true: is Leaf True of {'M': 11}
+root->false->true->false: feature_26 split 0.47075
+root->false->true->false->true: is Leaf True of {'B': 8}
+root->false->true->false->false: is Leaf True of {'M': 2}
+root->false->false: feature_21 split 33.37
+root->false->false->true: feature_28 split 0.2829
+root->false->false->true->true: is Leaf True of {'M': 3}
+root->false->false->true->false: is Leaf True of {'B': 11}
+root->false->false->false: is Leaf True of {'B': 167}
+################################## test_predict_sample
+Person data: [ 18.05  16.15 120.2 ]
+Prediction: M
+################################## test_predict
+Sample predictions = ['M' 'M' 'M' 'M' 'M' 'M' 'B' 'B' 'M' 'B' 'M' 'B' 'B' 'M' 'M' 'B' 'B' 'B'
+ 'M' 'M']
+Sample actual      = ['M' 'M' 'B' 'M' 'M' 'M' 'B' 'M' 'M' 'B' 'B' 'B' 'B' 'B' 'B' 'B' 'B' 'B'
+ 'M' 'B']
+################################## test_min_for_pruning
+root: feature_2 split 90.86
+root->true: is Leaf True of {'M': 6}
+root->false: feature_1 split 15.8
+root->false->true: is Leaf True of {'B': 11}
+root->false->false: is Leaf True of {'M': 1, 'B': 2}
+Prediction: B
